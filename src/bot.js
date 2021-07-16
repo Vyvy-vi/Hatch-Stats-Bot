@@ -1,21 +1,24 @@
 const { Client } = require('discord.js')
-const hnyPrice = require('./handlers/price')
+const hatchInfo = require('./handlers/price')
 require('dotenv').config()
 
 const client = new Client()
 
-const priceUpdate = async () => {
+const hatchUpdate = async () => {
   const server = await client.guilds.fetch(process.env.DISCORD_SERVER_ID)
   const bot = await server.members.fetch(client.user.id)
-  const price = await hnyPrice()
-  bot.setNickname(`HNY: $${price}`)
+  const { funds, state } = await hatchInfo()
+  bot.setNickname(`Raised: ${funds} WXDAI`)
+  client.user.setActivity(
+    `Hatch: ${state}`,
+    { type: 'WATCHING' }
+  )
 }
-
 client.on('ready', () => {
   console.log(`${client.user.tag} has logged in!`)
-  priceUpdate()
+  hatchUpdate()
 })
 
-client.setInterval(() => priceUpdate(), process.env.UPDATE_FREQUENCY * 1000)
+client.setInterval(() => hatchUpdate(), process.env.UPDATE_FREQUENCY * 1000)
 
 client.login(process.env.DISCORDJS_BOT_TOKEN)

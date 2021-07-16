@@ -11,7 +11,9 @@
   "author": "Hernando Guzman",
   "license": "MIT",
   "dependencies": {
+    "@1hive/connect": "^0.9.1",
     "@aragon/connect-thegraph": "^0.7.0",
+    "@commonsswarm/connect-hatch": "^0.0.4",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "graphql-tag": "^2.11.0"
