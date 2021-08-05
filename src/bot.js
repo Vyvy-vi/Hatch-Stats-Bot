@@ -1,5 +1,5 @@
 const { Client } = require('discord.js')
-const hatchInfo = require('./handlers/price')
+const hatchInfo = require('./handlers/funds')
 require('dotenv').config()
 
 const client = new Client()

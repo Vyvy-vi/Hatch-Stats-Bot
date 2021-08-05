@@ -26,18 +26,19 @@ module.exports = async function hatchInfo() {
     }
   }
   let totalFunds = (parseFloat(result.data.hatchConfig.totalRaised) / (10 ** 18))
-  if (totalFunds >= 1000)
+  if(totalFunds >= 1000000)
   {
-    totalFunds = `${(totalFunds / 1000).toFixed(2)}K`  
+    totalFunds = `${(totalFunds / 1000000).toFixed(2)}M`
   }
-  else if(totalFunds >= 1000000)
+  else if (totalFunds >= 1000)
   {
-    totalFunds = `${(totalFunds / 1000).toFixed(2)}M`
+    totalFunds = `${(totalFunds / 1000).toFixed(2)}K`
   }
   else
   {
     totalFunds = `${totalFunds.toFixed(2)}`
   }
+
   return { 
     funds: totalFunds,
     state: result.data.hatchConfig.state
